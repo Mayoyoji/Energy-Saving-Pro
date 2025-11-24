@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Saving Pro - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="form-header">
+            <div class="form-title">Energy Saving Pro</div>
+        </div>
+        
+        <h2 class="welcome-text">Welcome back</h2>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <button type="button" onclick="togglePassword('password')" class="password-toggle">
+                        👁️
+                    </button>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="CreateAccount.html" class="btn btn-secondary">Create Account</a>
+            </div>
+            
+        </form>
+        
+        <p class="footer-text">© 2025 Energy Saving Pro. All rights reserved.</p>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.min.js"></script>
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script>
+            
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registered:', registration);
+            })
+            .catch((error) => {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+    "short_name": "Energy Saving Pro",
+    "name": "Energy Saving Pro - Energy Monitoring and Management",
+    "description": "Monitor and manage your energy consumption, costs, and carbon footprint",
+    "background_color": "#000000",
+    "icons": [
+      {
+        "src": "/Icons/Icon-192.png.png",
+        "type": "image/png",
+        "sizes": "192x192",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "/Icons/Icon-512.png.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "theme_color": "#4CAF50",
+    "orientation": "portrait",
+    "iarc_rating_id": "e58c174a-81d2-5c3c-32cc-34b8de4a52e9"
+  }
