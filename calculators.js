@@ -151,24 +151,46 @@
             select.appendChild(option);
         });
     }
+    function formatLargeNumber(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        } else if (num >= 1000) {
+            return (num / 1000).toFixed(1) + 'K';
+        }
+        return num.toLocaleString();
+    }
+    
 
-    async function calculateCarbon() {
-        const consumption = parseFloat(document.getElementById('energyConsumption').value) || 0;
+    function calculateCarbon() {
+        const energy = parseFloat(document.getElementById('energyConsumption').value) || 0;
         const emissionFactor = 0.691;
-        const carbonEmissions = consumption * emissionFactor;
+        const carbonEmissions = energy * emissionFactor;
         
-        document.getElementById('carbonResult').textContent = carbonEmissions.toFixed(2);
-        showToast(`Carbon footprint calculated: ${carbonEmissions.toFixed(2)} kg CO₂`, 'success');
+        
+        const formattedResult = formatLargeNumber(Math.round(carbonEmissions));
+        document.getElementById('carbonResult').textContent = formattedResult;
     }
 
-    async function calculateBill() {
+    function calculateBill() {
         const reading = parseFloat(document.getElementById('meterReading').value) || 0;
-        const tariff = parseFloat(document.getElementById('tariffRate').value) || (userProfile.electricityTariff || 11.00);
-        const bill = reading * tariff;
-        
-        document.getElementById('billResult').textContent = `₱${bill.toFixed(2)}`;
-        showToast(`Estimated bill: ₱${bill.toFixed(2)}`, 'success');
+        const tariff = parseFloat(document.getElementById('tariffRate').value) || 0;
+        const billAmount = reading * tariff;
+   
+        const formattedBill = formatCurrency(billAmount);
+        document.getElementById('billResult').textContent = formattedBill;
     }
+    function formatCurrency(amount) {
+        if (amount >= 1000000) {
+            return '₱' + (amount / 1000000).toFixed(1) + 'M';
+        } else if (amount >= 1000) {
+            return '₱' + (amount / 1000).toFixed(1) + 'K';
+        }
+        return '₱' + amount.toLocaleString(undefined, { 
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2 
+        });
+    }
+
 
     async function calculateScenario() {
         const applianceId = document.getElementById('scenarioAppliance').value;
