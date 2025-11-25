@@ -186,6 +186,7 @@
     margin-right: 0;
     box-sizing: border-box;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
 }
 
 .quick-stats {
@@ -296,6 +297,7 @@
 .form-group {
     margin-bottom: 12px;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 0;
 }
 
 .form-row {
@@ -303,6 +305,12 @@
     grid-template-columns: 1fr;
     gap: 10px;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type="number"] {
+    min-width: 0;
+    font-size: 16px; 
+    padding: 12px;
 }
 
 label {
@@ -358,7 +366,7 @@ input:focus, select:focus {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Profile Summary - Light Mode */
+
 .profile-summary {
     background: #E8F5E9;
     border-radius: 8px;
@@ -367,7 +375,7 @@ input:focus, select:focus {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Calculation Results - Light Mode */
+
 .calc-result, .bill-result, .scenario-result {
     background: #E8F5E9;
     border-radius: 8px;
@@ -378,14 +386,43 @@ input:focus, select:focus {
 }
 
 .calc-result .result-value,
-.bill-result .result-value, 
+.bill-result .result-value,
 .scenario-result .result-value {
-    font-size: 36px;
+    font-size: clamp(24px, 5vw, 36px);
     font-weight: 700;
     color: #2E7D32;
     margin-bottom: 10px;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.2;
 }
+
+#carbonResult,
+#billResult {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    font-size: clamp(20px, 4vw, 32px) !important;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.calc-input,
+.calc-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 0; 
+}
+
 
 .calc-result .result-label,
 .bill-result .result-label,
@@ -396,7 +433,80 @@ input:focus, select:focus {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Appliance Timeline Cards - Light Mode */
+@media (max-width: 480px) {
+    .carbon-calc, .cost-calc {
+        gap: 15px;
+    }
+    
+    .calc-input, .calc-section {
+        padding: 15px;
+    }
+    
+    .calc-result, .bill-result, .scenario-result {
+        padding: 20px 15px;
+    }
+    
+    
+    .cost-calc .calc-section {
+        margin-bottom: 20px;
+    }
+    
+    .cost-calc .calc-section:last-child {
+        margin-bottom: 0;
+    }
+    
+   
+    .form-row {
+        gap: 8px;
+    }
+    
+    input, select {
+        font-size: 16px; 
+    }
+}
+
+
+@media (max-width: 360px) {
+    .dashboard-main {
+        padding: 15px 10px;
+    }
+    
+    .module-content {
+        padding: 15px;
+    }
+    
+    .calc-input, .calc-section {
+        padding: 12px;
+    }
+    
+    .calc-result .result-value,
+    .bill-result .result-value {
+        font-size: clamp(18px, 4vw, 28px);
+    }
+    
+    .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+}
+
+
+body.dark-mode .calc-result .result-value,
+body.dark-mode .bill-result .result-value,
+body.dark-mode .scenario-result .result-value {
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+body.dark-mode .scenario-result .result-item span:first-child {
+    color: #C8E6C9;
+}
+
+body.dark-mode .scenario-result .result-item span:last-child {
+    color: #4CAF50;
+}
+
+
 .appliance-timeline-card {
     display: flex;
     align-items: flex-start;
@@ -442,7 +552,7 @@ input:focus, select:focus {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Goal Items - Light Mode */
+
 .goal-item {
     background: #E8F5E9;
     padding: 18px;
@@ -487,7 +597,7 @@ input:focus, select:focus {
     margin-top: 8px;
 }
 
-/* Progress Bar Styling */
+
 .goal-progress-bar {
     width: 100%;
     height: 10px;
@@ -803,7 +913,7 @@ input:focus, select:focus {
     }
 }
 
-/* Chart container responsive fixes - FIXED FOR CHART.JS */
+
 .chart-container {
     display: flex;
     justify-content: center;
@@ -828,7 +938,6 @@ input:focus, select:focus {
     margin: 0 auto;
 }
 
-/* FORCE Chart.js to be responsive */
 .chart-card canvas {
     width: 100% !important;
     height: auto !important;
@@ -836,7 +945,7 @@ input:focus, select:focus {
     max-height: 300px !important;
 }
 
-/* Chart.js responsive container */
+
 .chartjs-container {
     position: relative;
     width: 100% !important;
@@ -850,7 +959,7 @@ input:focus, select:focus {
     text-align: center;
 }
 
-/* Mobile-first responsive design for charts */
+
 @media (max-width: 768px) {
     .chart-container {
         padding: 10px;
@@ -879,7 +988,7 @@ input:focus, select:focus {
     }
 }
 
-/* Very small screens */
+
 @media (max-width: 480px) {
     .chart-container {
         padding: 8px;
@@ -904,7 +1013,7 @@ input:focus, select:focus {
     }
 }
 
-/* Tablet and larger screens */
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .chart-container {
         padding: 20px;
@@ -921,7 +1030,7 @@ input:focus, select:focus {
     }
 }
 
-/* Large screens */
+
 @media (min-width: 1025px) {
     .chart-container {
         padding: 25px;
@@ -943,6 +1052,14 @@ input:focus, select:focus {
     grid-template-columns: 1fr;
     gap: 20px;
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+.large-number {
+    font-size: clamp(18px, 3.5vw, 28px);
+    font-weight: 700;
+    line-height: 1.1;
 }
 
 @media (min-width: 768px) {
@@ -1411,7 +1528,7 @@ input:checked + .toggle-slider:before {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Dark Mode Styles */
+
 body.dark-mode {
     background: linear-gradient(135deg, #0d2b13, #1a4720, #2d5c2f);
     color: #e0e0e0;
@@ -1502,7 +1619,7 @@ body.dark-mode .help-text {
     color: #b0b0b0;
 }
 
-/* Dark Mode - Consistent Colors */
+
 body.dark-mode .profile-summary,
 body.dark-mode .calc-result,
 body.dark-mode .bill-result,
@@ -1724,7 +1841,7 @@ body.dark-mode .btn-delete-notification:hover {
     color: #ff6b6b;
 }
 
-/* Action Buttons */
+
 .appliance-actions,
 .goal-actions {
     display: flex;
@@ -1755,20 +1872,20 @@ body.dark-mode .goal-actions {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Keep the exceeded goal styling distinct */
+
 body.dark-mode .goal-exceeded {
     background: linear-gradient(135deg, #5a1a1a, #7b1a1a) !important;
     color: #ffcdd2 !important;
     border-left: 4px solid #f44336 !important;
 }
 
-/* Date group styling for appliances */
+
 body.dark-mode .date-bubble {
     background: linear-gradient(135deg, #4CAF50, #1a4720);
     box-shadow: 0 2px 8px rgba(76, 175, 80, 0.5);
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .appliance-timeline-card {
         padding: 12px;
@@ -1833,7 +1950,7 @@ body.dark-mode .date-bubble {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Goal exceeded styling */
+
 .goal-exceeded {
     border-left: 4px solid #f44336 !important;
     background: #ffebee !important;
